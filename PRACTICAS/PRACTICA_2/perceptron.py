@@ -4,7 +4,12 @@ import csv
 
 def graph(w_values):
     plt.clf()
-    plt.scatter(X[0], X[1], color="black")
+    for i in range(len(y)):
+        if y[i] == 1:
+            color = 'green'
+        else:
+            color = 'red'
+    plt.scatter(X[0][i], X[1][i], color=color)
     plt.axhline(color="blue")
     plt.axvline(color="blue")
     x_values = [-3,3]
