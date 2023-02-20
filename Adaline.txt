@@ -1,0 +1,31 @@
+Adeline -> buscar los pesos que tengan el menor error posible
+
+perceptron -> funcion de activacion escalon -> salida binaria
+Adaline -> salidas continuas -> puede usar funcion de activacion lineal f(v) = V
+
+eturn np.dot(self.w, xs) (funcion de activacion Adaline)
+
+Funcion de activacion logistica -> f(v)=1/1+e^-v -> su derivada (y(1-y))
+Funcion de activacion sigmoidal -> f(v)=tanh(v) -> su derivada 1-y^2
+
+Algoritmo de entrenamiento -> no puede ser 0, se puede acercar
+
+n = tasa de aprendizaje
+Adaline ajusta sus pesos: w(k+1)=w(k)+ne(k)f'(v(k))x(k)
+f' -> derivada -> funcion de activacion 
+
+A los pesos sumarle un incremento delta w 
+
+w(k+1)=w(k)- n delta w(k)
+
+delta w(k) = de^2/dw
+
+criterio de paro:
+    si el error promedio es cerca de 0 parar
+    si no repetir el paso 2
+
+
+tarea: del video de las palanquitas ver la parte 1
+adaline widrow (titulo)
+
+

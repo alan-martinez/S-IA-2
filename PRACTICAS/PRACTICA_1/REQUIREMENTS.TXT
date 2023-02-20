@@ -1,0 +1,67 @@
+PERCEPTRON
+
+linealmente separable
+
+x -> n
+w -> 
+delta -> numero de activacion
+numeros reales, continua
+
+f(.)
+funcion de activacion (toma la suma de las entradas, convierte a
+valor binario)
+
+
+#ECUACION
+u = sumatoria de i = 1, wi * xi (sumar peso por entrada) - umbral de activacion
+
+y = f(u)
+-----------------
+
+entrada siempre = 1
+
+b = w0
+b = - umbral 
+
+v = sumatoria i=n, i=0 wi * xi (peso por entrada)
+
+salida -> binaria
+
+si f(v) >= 0 se activa
+si f(v) < 0 no se activa
+
+se puede usar tambien (-1, 1)
+
+funcion recta = m X + c
+
+x2 = delta - w1 * x1 / w2 
+
+x2 = -w1 * x2 / w2 + delta / w2 
+
+x2 = -w1 / w2 * x1 + delta / w2 
+
+x1 = -1
+x2 = 3
+
+1 * -1 + 3 * 1 = 2 - 1.5 = .5
+
+1 
+
+2 
+-1
+1 * 2 + -1 * 1 = 1 - 1.5 = -.5
+
+
+Tarea
+
+prueba y error encontrar que pesos y que umbral de activacion nos darian para tener una compuerta or 
+
+en cuaderno
+
+dibujar la recta que nos sale 
+
+
+
+
+
+

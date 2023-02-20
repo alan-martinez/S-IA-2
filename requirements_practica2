@@ -1,0 +1,24 @@
+Entrenamiento de la neurona
+Paso 1: inicializar pesos w y umbral con valores aleatorios entre 0 y 1.
+
+(CADA QUE SE CORRE EL PASO 2 SE DICE QUE CORRIO UNA EPOCA)
+Paso 2: Por cada patron de entrenamiento:
+    Calcular la salida 'y' de la neurona con la entrada 'x' actual
+    Calcular el error 'e' de la neurona.
+    Ajustar pesos 'w'
+
+Paso 3: criterio de paro. si en el paso 2 hubo un solo error que fuera distinto de 0
+    Ir al paso 2
+
+    w^j(k+1) = w^j(k)+ne(k)x^j(k)
+
+    Calcular el error: d -> salidas deseadas
+    e(k) = d^j(k)-y^j(k)
+
+
+    0.4 para h (heta) es bien valor de inicio
+    0 -> ROJO
+    1 -> AZUL
+
+    Etiquetas de las salidas deseadas dicen el color
+    
