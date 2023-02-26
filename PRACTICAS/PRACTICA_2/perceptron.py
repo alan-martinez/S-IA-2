@@ -4,12 +4,10 @@ import csv
 
 def graph(w_values):
     plt.clf()
-    for i in range(len(y)):
-        if y[i] == 1:
-            color = 'green'
-        else:
-            color = 'red'
-        plt.scatter(X[0][i], X[1][i], color=color)
+    #Colorear entradas, si es 1 verde si es 0 rojo
+    colors = np.where(y == 1, 'green', 'red')
+    plt.scatter(X[0], X[1], color=colors)
+
     plt.axhline(color="blue")
     plt.axvline(color="blue")
     x_values = [-3,3]
@@ -48,16 +46,15 @@ class neurona:
                     graph(self.w)
                     plt.savefig(str(i) +'grafica')
 
-file = open("entradas.csv")
-rows = len(file.readlines())
-file.close()
 
 # Obtener el numero de filas en la entrada del archivo
-f = open("entradas.csv",'r')
-reader = csv.reader(f,delimiter=',')
-columns = len(next(reader))
-f.close()
+with open("entradas.csv") as file:
+    rows = len(file.readlines())
+
 # Obtener el numero de columnas en la entrada del archivo
+with open("entradas.csv") as f:
+    reader = csv.reader(f,delimiter=',')
+    columns = len(next(reader))
       
 percep = neurona(columns-1, 0.1)
 arreglo = []
@@ -73,13 +70,4 @@ percep.train(X, y, 10) # 10 -> Numero de epocas
 
 for i in range(rows):
     print(percep.predict(X[:, i]))
-    
-plt.clf()
-plt.title("Neurona perceptrón con entrenamiento", fontsize=20)
-plt.scatter(X[0], X[1], color="black")
-plt.axhline(color="blue")
-plt.axvline(color="blue")
-x_values = [-3,3]
-y_values = [-(percep.w[0][0]/percep.w[1][0])*(-3) - (percep.b / percep.w[1][0]), -(percep.w[0][0]/percep.w[1][0])*(3) - (percep.b / percep.w[1][0])]
-plt.plot(x_values, y_values, color="gray")
-# plt.savefig('grafica')
+  
