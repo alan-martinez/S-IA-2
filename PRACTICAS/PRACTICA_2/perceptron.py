@@ -9,7 +9,7 @@ def graph(w_values):
             color = 'green'
         else:
             color = 'red'
-    plt.scatter(X[0][i], X[1][i], color=color)
+        plt.scatter(X[0][i], X[1][i], color=color)
     plt.axhline(color="blue")
     plt.axvline(color="blue")
     x_values = [-3,3]
@@ -35,7 +35,6 @@ class neurona:
             return -1
 
     # TODO x -> matriz, y ->vector de resultados esperados, epocas
-
     def train(self, X, y, epocas):
         n, m = X.shape
         #n = 2. m = 4 en el ejemplo de la compuerta AND, OR y XOR.
@@ -47,6 +46,7 @@ class neurona:
                     self.w += self.aprendizaje*(y[j] - y_pred) * X[:, j].reshape(-1, 1)
                     self.b += self.aprendizaje*(y[j] - y_pred) 
                     graph(self.w)
+                    plt.savefig(str(i) +'grafica')
 
 file = open("entradas.csv")
 rows = len(file.readlines())
@@ -82,4 +82,4 @@ plt.axvline(color="blue")
 x_values = [-3,3]
 y_values = [-(percep.w[0][0]/percep.w[1][0])*(-3) - (percep.b / percep.w[1][0]), -(percep.w[0][0]/percep.w[1][0])*(3) - (percep.b / percep.w[1][0])]
 plt.plot(x_values, y_values, color="gray")
-plt.savefig('grafica')
+# plt.savefig('grafica')
