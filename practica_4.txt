@@ -1,0 +1,61 @@
+Red unicapa:
+
+Es una red de n neuronas y m entradas
+Todas las neuronas reciben las mismas entradas
+pero cada neurona produce su propia salida
+
+
+1 neurona -> 2 clases
+2 neuronas -> 4 clases
+3 neuronsa -> 8 clases 
+2^m
+
+Practica 4:
+archivos de entradas: graficar x1 y x2 
+
+se pueden usar percptrones o adalines:
+
+si es adaline: f(v) = 1 / 1 + e^-v
+f(v) = tanh(v)
+
+si es perceptron usar step 
+
+archivo_x.txt 
+x1 x2 
+
+archivo_salidas_deseadas.txt 
+columnas de salidas deseadas hasta m salidas -> d1, d2, dm 
+
+
+salidas deseadas solo 0 y 1 
+
+segun las columnas de salidas deseadas son las neuronas necesarias:
+1 columna 1 neurona, 2 columnas 2 neuronas 
+
+
+entrenar:
+inicializo los pesos al azar de todas las neuronas 
+cada paso aplicarlo para todas las neuronas 
+
+
+para el color de los puntos (minimo 32 colores-> para 4 neuronas al mismo tiempo):
+
+000 0 -> rojo
+001 1 -> azul 
+010 2 -> verde 
+011 3 ->...etc
+100 4
+101 5
+110 6
+111 7
+
+utilizar turtle para los colores 
+
+
+solo son 2 entradas 
+
+varios dataset de entradas y salidas deseadas 
+
+
+
+

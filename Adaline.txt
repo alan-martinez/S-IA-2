@@ -5,6 +5,7 @@ Adaline -> salidas continuas -> puede usar funcion de activacion lineal f(v) = V
 
 eturn np.dot(self.w, xs) (funcion de activacion Adaline)
 
+funcion de activacion lineal f(v) = V
 Funcion de activacion logistica -> f(v)=1/1+e^-v -> su derivada (y(1-y))
 Funcion de activacion sigmoidal -> f(v)=tanh(v) -> su derivada 1-y^2
 
@@ -28,4 +29,7 @@ criterio de paro:
 tarea: del video de las palanquitas ver la parte 1
 adaline widrow (titulo)
 
+
+hacer una neurona adaline para clasificar segun la funcion de activacion que se de, lineal, logaritmica o sigmoidal
+tangente hiperbolica -> logaritmica 
 

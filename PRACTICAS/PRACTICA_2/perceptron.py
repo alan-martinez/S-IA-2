@@ -25,7 +25,7 @@ class neurona:
         self.w = -1 + 2 * np.random.rand(dim, 1)  #x = min + (max - min)*rand()
         self.b = -1 + 2 * np.random.rand()
 
-    def predict(self, x):
+    def clasificar(self, x):
         y = np.dot(self.w.transpose(), x) + self.b
         if y >= 0:
             return 1
@@ -35,10 +35,9 @@ class neurona:
     # TODO x -> matriz, y ->vector de resultados esperados, epocas
     def train(self, X, y, epocas):
         n, m = X.shape
-        #n = 2. m = 4 en el ejemplo de la compuerta AND, OR y XOR.
         for i in range(epocas):
             for j in range(m):
-                y_pred = self.predict(X[:, j])
+                y_pred = self.clasificar(X[:, j])
                 # Cortar la matriz, tomando las filas (:) pero manteniendo las columnas
                 if y_pred != y[j]:  #Si nuestro estimado es diferente a nuestro esperado, entrenamos.
                     self.w += self.aprendizaje*(y[j] - y_pred) * X[:, j].reshape(-1, 1)
@@ -69,5 +68,5 @@ y = np.array(np.loadtxt("entradas.csv", delimiter=',', usecols=columns-1))
 percep.train(X, y, 10) # 10 -> Numero de epocas
 
 for i in range(rows):
-    print(percep.predict(X[:, i]))
+    print(percep.clasificar(X[:, i]))
   
