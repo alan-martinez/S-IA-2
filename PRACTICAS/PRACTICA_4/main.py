@@ -4,33 +4,28 @@ import PerceptronUnicapa as percepUni
 
 trainingPatternsFileName = "Entradas1.csv"
 outputValuesFileName = "SalidasDeseadas1.csv"
-epochs = 40
+epochs = 10
 
 file = open(trainingPatternsFileName)
 rows = len(file.readlines())
 file.close()
-#To obtain the number of rows from the CSV file
 
 file = open(trainingPatternsFileName,'r')
 reader = csv.reader(file,delimiter=',')
 columns = len(next(reader))
 file.close()
-#To obtain the number of columns from the CSV file
 
 file = open(outputValuesFileName,'r')
 reader = csv.reader(file,delimiter=',')
 number_of_neurons = len(next(reader))
 file.close()
-#To obtain the number of neurons for the program. The number of output columns tells us the number of neurons.
 
 neurons_array = []
       
 for i in range(number_of_neurons):
     net = percepUni.neurona(columns, 0.1)
     neurons_array.append(net)
-#Perceptron initialization.
-                    
-############################################################################                    
+    
 patterns = []
 y = []
 
@@ -41,8 +36,6 @@ X = np.array(patterns)
 
 for i in range(number_of_neurons):
     y.append(np.array(np.loadtxt(outputValuesFileName, delimiter=',', usecols=i)))
-#Obtaining training patterns in X and output values in y.
-###########################################################################
 
 global_errors = []
 for i in range(number_of_neurons):
