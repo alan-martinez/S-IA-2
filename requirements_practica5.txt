@@ -1,0 +1,8 @@
+Red multicapa:
+A la ultima capa se le conoce como red de salida
+
+N entradas, M salidas
+
+Capas ocultas -> capas que no son la capa de salida
+
+Separa 

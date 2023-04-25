@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 y_axis = []
 
-plt.ylabel('Error', fontsize=30)
-plt.xlabel('Epocas', fontsize=30)
-plt.title('Perceptrón unicapa', fontsize=40)
+plt.ylabel('Error', fontsize=20)
+plt.xlabel('Epocas', fontsize=20)
+plt.title('Perceptrón unicapa', fontsize=30)
 
 def graphError(x_coordinate, y_coordinate):
     # generar una secuencia de 32 colores distintos

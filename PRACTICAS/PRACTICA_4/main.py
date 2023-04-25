@@ -2,15 +2,15 @@ import csv
 import numpy as np
 import PerceptronUnicapa as percepUni
 
-trainingPatternsFileName = "Entradas1.csv"
+entradasFile = "Entradas1.csv"
 outputValuesFileName = "SalidasDeseadas1.csv"
 epochs = 10
 
-file = open(trainingPatternsFileName)
+file = open(entradasFile)
 rows = len(file.readlines())
 file.close()
 
-file = open(trainingPatternsFileName,'r')
+file = open(entradasFile,'r')
 reader = csv.reader(file,delimiter=',')
 columns = len(next(reader))
 file.close()
@@ -30,7 +30,7 @@ patterns = []
 y = []
 
 for i in range(columns):
-    x = np.array(np.loadtxt(trainingPatternsFileName, delimiter=',', usecols=i))
+    x = np.array(np.loadtxt(entradasFile, delimiter=',', usecols=i))
     patterns.append(x)
 X = np.array(patterns)
 
