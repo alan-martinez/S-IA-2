@@ -2,7 +2,7 @@ import numpy as np
 from activations import *
 import matplotlib.pyplot as plt
 
-class MLP:
+class RedMulticapa:
     def __init__(self, layers_dim, activations):
         #Atributes
         self.W = [None]	#Matrix with sinaptic weights of each layer. As the first layer (the entries) doesn't have weights, we use the None to make sure the first space in the matrix has nothing, but the rest does.

@@ -1,65 +1,67 @@
 import csv
 import numpy as np
-from MPL import *
+from RedMulticapa import *
 import matplotlib.pyplot as plt
 import time
 
 # Error graphing function.
 def graphLearning(x_coordinate, y_coordinate):    
     plt.plot(x_coordinate, y_coordinate)
-    # plt.show()
     plt.pause(0.2)
-    plt.close()
     
 def graphError(x_coordinate, y_coordinate):    
-    plt.plot(x_coordinate, y_coordinate, 'ro', markersize=10)
-    # plt.show()
+    plt.plot(x_coordinate, y_coordinate, 'go', markersize=10)
     plt.pause(0.000000001)
-    # plt.close()
     
 def main():
-    logic_gate = input("Compuerta logica a trabajar (xor/xnor): ")
+    print("Seleccione la compuerta logica a trabajar:")
+    print("1. XOR")
+    print("2. XNOR")
+    print("3. Salir")
     
-    trainingPatternsFileName = "InputValues1.csv"
-    
-    if logic_gate == "xor":
-        outputValuesFileName = "OutputValues1.csv"
-    elif logic_gate == "xnor":
-        outputValuesFileName = "OutputValues2.csv"
-    else:
-        raise ValueError('Compuerta Desconocida')
-    # CSV documents selection.
+    while True:
+        try:
+            option = int(input("Ingrese el número de la opción que desea: "))
+            if option == 1:
+                logic_gate = "xor"
+                trainingPatternsFileName = "entradas.csv"
+                outputValuesFileName = "xor.csv"
+                break
+            elif option == 2:
+                logic_gate = "xnor"
+                trainingPatternsFileName = "entradas.csv"
+                outputValuesFileName = "xnor.csv"
+                break
+            elif option == 3:
+                print("¡Hasta luego!")
+                return
+            else:
+                print("Opción inválida. Por favor ingrese una opción válida.")
+        except ValueError:
+            print("Entrada inválida. Por favor ingrese un número.")
+
     
     # epochs = 10000
-    epochs = 100
+    epochs = 1000
     learning_rate = 0.3
-    neurons_in_hidden_layer = 4
+    neurons_in_hidden_layer = 8
     
     file = open(trainingPatternsFileName)
     rows = len(file.readlines())
     file.close()
-    #To obtain the number of rows from the CSV file
     
     file = open(trainingPatternsFileName,'r')
     reader = csv.reader(file,delimiter=',')
     entries = len(next(reader))
     file.close()
-    #To obtain the number of columns from the CSV file
     
     file = open(outputValuesFileName,'r')
     reader = csv.reader(file,delimiter=',')
     output_layer_neurons = len(next(reader))
     file.close()
-    #To obtain the number of neurons for the program. The number of output columns tells us the number of neurons.
-    
-    net = MLP((entries, neurons_in_hidden_layer, output_layer_neurons), ('tanh', 'sigmoid'))
-    # First parenthesis:
-        # First position: Number of entrances X to the NN.
-        # Second to n-1 position: Number of neurons in hidden layers.
-        # Last position: Number of neurons in the output layer.
-    # Second parenthesis: Activation functions for the hidden and output layers.
-    
-    ############################################################################                    
+     
+    net = RedMulticapa((entries, neurons_in_hidden_layer, output_layer_neurons), ('tanh', 'sigmoid'))
+                
     patterns = []
     y = []
     
@@ -70,24 +72,22 @@ def main():
     
     for i in range(output_layer_neurons):
         y.append(np.array(np.loadtxt(outputValuesFileName, delimiter=',', usecols=i)))
-    #Obtaining training patterns in X and output values in y.
-    ###########################################################################
-    
-    # Training section.
-    
+
     plt.figure(1)
     if logic_gate == "xor":
-        plt.title("XOR with MLP", fontsize=20)
+        plt.title("XOR", fontsize=20)
         plt.plot(0,0,'r*')
-        plt.plot(0,1,'b*')
-        plt.plot(1,0,'b*')
+        plt.plot(0,1,'k*')
+        plt.plot(1,0,'k*')
         plt.plot(1,1,'r*')
+        plt.pause(5)
     elif logic_gate == "xnor":
-        plt.title("XNOR with MLP", fontsize=20)
-        plt.plot(0,0,'b*')
+        plt.title("XNOR", fontsize=20)
+        plt.plot(0,0,'k*')
         plt.plot(0,1,'r*')
         plt.plot(1,0,'r*')
-        plt.plot(1,1,'b*')
+        plt.plot(1,1,'k*')
+        plt.pause(5)
         
     error_list = []
     
@@ -97,16 +97,13 @@ def main():
         if i%10 == 0:
             graphLearning(0,0)   
             
-            # xx, yy = np.meshgrid(np.arange(-0.1, 1.1, 0.6), np.arange(-0.1, 1.1, 0.6))
             xx, yy = np.meshgrid(np.arange(-1, 2.1, 0.1), np.arange(-1, 2.1, 0.1))
             x_input = [xx.ravel(), yy.ravel()]
             zz = net.predict(x_input)
             zz = zz.reshape(xx.shape)
             
-            plt.contourf(xx, yy, zz, alpha=0.8, cmap=plt.cm.RdBu)
+            plt.contourf(xx, yy, zz, alpha=0.8, cmap=plt.cm.YlOrRd)
             
-            # plt.xlim([-0.25, 1.25])
-            # plt.ylim([-0.25, 1.25])
             plt.xlim([-1, 2])
             plt.ylim([-1, 2])
             plt.grid()
@@ -114,6 +111,7 @@ def main():
             # plt.pause(2.5)
             # plt.close()
             print("iteracion", i)
+            print("error ", error)
 
         if error < 0.15:
             break
@@ -125,7 +123,6 @@ def main():
         
     results = np.array(net.predict(X)).T
     np.savetxt("Results.csv", results, delimiter=",", fmt='%.0f')
-    ###########################################################################
     
 if __name__ == "__main__":
     main()
